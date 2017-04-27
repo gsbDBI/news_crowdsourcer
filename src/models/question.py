@@ -181,6 +181,10 @@ class URLQuestion(TextQuestion) :
     def valid_response(self, response) :
         if not response.get('response', False):
             return False
+        # check the URL against a list of URLs we definitely don't want
+        negatives = ['facebook.com', 'opensecrets.org', 'fec.gov', 'campaignmoney.com', 'insidegov.com', 'ioncongress.com', 'fecwatch.org']
+        if any(negative in response.get('response', False) for negative in negatives):
+            return False
         return validators.url(response.get('response', False), public = True)
 
 class CommentQuestion(TextQuestion) :
