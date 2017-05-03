@@ -85,7 +85,7 @@ class MTurkConnection(object):
         qualifications.add(boto.mturk.qualification.LocaleRequirement('EqualTo',
                                                                       'US'))
 
-        duration = datetime.timedelta(hours=2)
+        duration = datetime.timedelta(minutes=90)
 
         hitinfo = self.mturk_conn.create_hit(questions=question_form,
                                              max_assignments=max_assignments,
